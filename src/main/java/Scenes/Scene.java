@@ -2,6 +2,7 @@ package main.java.Scenes;
 
 import main.java.GameContext;
 import main.java.Menus.Menu;
+import main.java.Menus.MenuData;
 
 import java.util.Scanner;
 
@@ -10,9 +11,9 @@ public class Scene implements IScene {
     GameContext game;
     Scanner scanner = new Scanner(System.in);
 
-    public Scene(GameContext context) {
+    public Scene(GameContext context, MenuData data) {
         this.game = context;
-        this.menu = getMenu();
+        this.menu = new Menu(context, data);
     }
 
     public Menu getMenu() {

@@ -1,8 +1,8 @@
 package main.java.Menus;
 
 import main.java.GameContext;
-import main.java.Scenes.DialogueScene;
-import main.java.Scenes.WorldScene;
+import main.java.Scenes.WorldScenes.TownScene;
+import main.java.Scenes.WorldScenes.WorldScene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,8 @@ public class Menu {
 
     private IAction lookupAction(String actionId) {
         return switch (actionId) {
-            case "new_game" -> () -> game.getSceneManager().switchTo(new WorldScene(game));
+            case "new_game" -> () -> game.getSceneManager().switchTo(new TownScene(game));
             case "quit" -> () -> game.getSceneManager().exitGame();
-            case "begin_dialogue" -> () -> game.getSceneManager().switchTo(new DialogueScene(game));
             case "back" -> () -> game.getSceneManager().goBack();
             default -> () -> System.out.println("No action defined for: " + actionId);
         };
@@ -50,8 +49,8 @@ public class Menu {
 
     public void display(){
         System.out.flush();
-        System.out.println("You are in " + menuData.getTitle());
-        System.out.println(menuData.getDescription());
+        System.out.println("You are in " + title);
+        System.out.println(description);
         for (MenuItem item : items) {
             System.out.println(item.getID() + ": " + item.getDescription());
         }
